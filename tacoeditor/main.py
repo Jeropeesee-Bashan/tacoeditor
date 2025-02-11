@@ -76,6 +76,3 @@ class MyGtkApp(Adw.Application):
 def main():
     app = MyGtkApp()
     return app.run(sys.argv)
-
-if __name__ == "__main__":
-    main()
