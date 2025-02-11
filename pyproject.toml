@@ -5,13 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tacoeditor"
 version = "0.1.0"
-description = "A GTK4 application using CFFI"
+description = "A beatmap editor for osu!taiko and Taco"
 requires-python = ">=3.8"
 dependencies = [
     "PyGObject",
-    "cffi",
-    "libadwaita",
+    "cffi"
 ]
 
 [project.scripts]
-taco-editor = "tacoeditor.main:main"
+tacoeditor = "tacoeditor.main:main"
