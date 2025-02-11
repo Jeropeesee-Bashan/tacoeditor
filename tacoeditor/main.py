@@ -65,7 +65,7 @@ class MainWindow(Adw.ApplicationWindow):
             "weather-clear-symbolic" if is_dark else "weather-clear-night-symbolic"
         )
 
-class MyGtkApp(Adw.Application):
+class TacoEditor(Adw.Application):
     def __init__(self):
         super().__init__(application_id="su.kulenko.tacoeditor")
 
@@ -74,5 +74,5 @@ class MyGtkApp(Adw.Application):
         window.present()
 
 def main():
-    app = MyGtkApp()
+    app = TacoEditor()
     return app.run(sys.argv)
