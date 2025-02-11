@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="TacoEditorWindow" parent="AdwApplicationWindow">
+    <property name="title">Taco Editor</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="start">
+              <object class="GtkMenuButton" id="file_button">
+                <property name="label">File</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="theme_button">
+                <property name="icon-name">weather-clear-night-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">20</property>
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <property name="vexpand">true</property>
+            <child>
+              <object class="GtkPicture" id="welcome_picture">
+                <property name="can-shrink">true</property>
+                <property name="width-request">300</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Welcome to Taco Editor!
+    You can open an existing project or create a new one...</property>
+                <property name="justify">center</property>
+                <property name="wrap">true</property>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </child>
+  </template>
+</interface>
