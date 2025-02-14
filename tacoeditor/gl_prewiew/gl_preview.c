@@ -1,6 +1,4 @@
 #include "gl_preview.h"
-#include "gdk/gdk.h"
-#include "gtk/gtk.h"
 
 #include <epoxy/gl.h>
 
