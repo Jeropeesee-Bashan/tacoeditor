@@ -13,8 +13,8 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/gl_preview.c
     ${CMAKE_SOURCE_DIR}/gl_preview.h
 )
-set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/TacoGLPreview-1.0.gir)
-set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/TacoGLPreview-1.0.typelib)
+set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/Taco-1.0.gir)
+set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/Taco-1.0.typelib)
 
 add_library(taco_gl_preview SHARED ${SOURCES})
 
@@ -46,7 +46,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E env LD_LIBRARY_PATH=${CMAKE_BINARY_DIR} g-ir-scanner
     ARGS --warn-all
     --warn-error
-    --namespace TacoGLPreview
+    --namespace Taco
     --nsversion 1.0
     --library=taco_gl_preview
     --include=Gtk-4.0
