@@ -12,6 +12,13 @@ struct _TacoGLPreview {
     GtkGLArea parent_instance;
 };
 
+/**
+* taco_gl_preview_new:
+*
+* Creates a new #TacoGLPreview widget.
+*
+* Returns: (transfer full): A new #TacoGLPreview widget.
+*/
 GtkWidget *taco_gl_preview_new(void);
 
 G_END_DECLS
