@@ -4,10 +4,12 @@ import os
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
+gi.require_version("Taco", "1.0")
 from gi.repository import (
     Gtk,
     Gio,
     Adw,
+    Taco,
 )
 
 resource_path = os.path.join(os.path.dirname(__file__), "resources")
@@ -19,7 +21,7 @@ class MainWindow(Adw.ApplicationWindow):
     file_button = Gtk.Template.Child()
     theme_button = Gtk.Template.Child()
     welcome_picture = Gtk.Template.Child()
-
+    main_box = Gtk.Template.Child()
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -45,6 +47,9 @@ class MainWindow(Adw.ApplicationWindow):
         self.add_action(exit_action)
 
         self.theme_button.connect("clicked", self.on_theme_toggle)
+        gl_preview = Taco.GLPreview()
+        gl_preview.set_size_request(-1, 150)
+        self.main_box.append(gl_preview)
 
     def on_new_clicked(self, action, param):
         print("New project functionality will be implemented here")

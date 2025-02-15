@@ -21,24 +21,28 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkBox">
+          <object class="GtkBox" id="main_box">
             <property name="orientation">vertical</property>
-            <property name="spacing">20</property>
-            <property name="valign">center</property>
-            <property name="halign">center</property>
-            <property name="vexpand">true</property>
             <child>
-              <object class="GtkPicture" id="welcome_picture">
-                <property name="can-shrink">true</property>
-                <property name="width-request">300</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Welcome to Taco Editor!
-    You can open an existing project or create a new one...</property>
-                <property name="justify">center</property>
-                <property name="wrap">true</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="vexpand">true</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <child>
+                  <object class="GtkPicture" id="welcome_picture">
+                    <property name="can-shrink">true</property>
+                    <property name="width-request">300</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Welcome to Taco Editor!
+        You can open an existing project or create a new one...</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">true</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
