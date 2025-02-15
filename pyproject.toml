@@ -9,7 +9,7 @@ description = "A beatmap editor for osu!taiko and Taco"
 requires-python = ">=3.8"
 dependencies = [
     "PyGObject",
-    "cffi"
+    "setuptools"
 ]
 
 [project.scripts]
