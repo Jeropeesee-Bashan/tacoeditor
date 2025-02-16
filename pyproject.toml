@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=45", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "tacoeditor"
@@ -8,9 +8,8 @@ version = "0.1.0"
 description = "A beatmap editor for osu!taiko and Taco"
 requires-python = ">=3.8"
 dependencies = [
-    "PyGObject",
-    "cffi"
+    "PyGObject"
 ]
 
-[project.scripts]
+[project.gui-scripts]
 tacoeditor = "tacoeditor.main:main"
