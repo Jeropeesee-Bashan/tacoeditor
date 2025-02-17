@@ -62,5 +62,3 @@ add_custom_command(
 )
 
 add_custom_target(gobject-introspection ALL DEPENDS ${GIR_OUTPUT})
-
-install(TARGETS gl_preview LIBRARY DESTINATION .)

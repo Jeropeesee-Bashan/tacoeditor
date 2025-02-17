@@ -32,13 +32,7 @@ class SpecialBuildHook(BuildHookInterface):
             build_dir
         ])
 
-        subprocess.check_call([
-            cmake,
-            "--install",
-            build_dir,
-            "--prefix",
-            f"{self.root}/tacoeditor/resources"
-        ])
+        shutil.copy(f"{build_dir}/libgl_preview.{suffix}", f"{self.root}/tacoeditor/resources")
 
         gircompiler = shutil.which("g-ir-compiler")
         if gircompiler is None:
