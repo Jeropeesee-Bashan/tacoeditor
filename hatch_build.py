@@ -1,11 +1,13 @@
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 import os
+import sys
 import shutil
 import subprocess
 
 from typing import Any
 
+suffix = "dll" if sys.platform == "win32" else "so"
 
 class SpecialBuildHook(BuildHookInterface):
     def initialize(self, version: str, build_data: dict[str, Any]):
@@ -45,11 +47,11 @@ class SpecialBuildHook(BuildHookInterface):
         subprocess.check_call([
             gircompiler,
             f"--output={self.root}/tacoeditor/resources/TacoEditor-1.0.typelib",
-            "--shared-library=./resources/libgl_preview.so",
+            f"--shared-library=./resources/libgl_preview.{suffix}",
             f"{build_dir}/TacoEditor-1.0.gir"
         ])
 
     def clean(self, versions: list[str]):
         shutil.rmtree(f"{self.root}/gl_preview/build")
         os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
-        os.remove(f"{self.root}/tacoeditor/resources/libtaco_gl_preview.so")
+        os.remove(f"{self.root}/tacoeditor/resources/libtaco_gl_preview.{suffix}")
