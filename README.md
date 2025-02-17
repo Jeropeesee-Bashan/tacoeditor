@@ -7,4 +7,3 @@ A beatmap editor for osu!taiko and Taco.
 - Python 3.8 or higher
 - GTK4
 - PyGObject
-- CFFI
