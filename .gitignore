@@ -1,5 +1,5 @@
 # Taco Editor specific
-tacoeditor/resources/girepository-1.0/
+*.typelib
 
 # Virtual Environment
 venv/

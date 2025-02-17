@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 resources_dir = Path(__file__).parent / "resources"
-os.environ["GI_TYPELIB_PATH"] = str(resources_dir / "girepository-1.0")
+os.environ["GI_TYPELIB_PATH"] = str(resources_dir)
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -82,5 +82,6 @@ class TacoEditor(Adw.Application):
         window.present()
 
 def main():
+    os.chdir(Path(__file__).parent)
     app = TacoEditor()
     return app.run(sys.argv)

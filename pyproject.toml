@@ -21,7 +21,7 @@ tacoeditor = "tacoeditor:main"
 packages = ["tacoeditor"]
 artifacts = [
     "tacoeditor/resources/*.so",
-    "tacoeditor/resources/girepository-1.0/"
+    "tacoeditor/resources/*.typelib"
 ]
 
 [tool.hatch.build.hooks.custom]

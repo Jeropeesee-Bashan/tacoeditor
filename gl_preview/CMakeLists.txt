@@ -57,18 +57,6 @@ add_custom_command(
     DEPENDS taco_gl_preview
 )
 
-add_custom_command(
-    OUTPUT ${TYPELIB_OUTPUT}
-    COMMAND g-ir-compiler ${GIR_OUTPUT} --output ${TYPELIB_OUTPUT}
-    DEPENDS ${GIR_OUTPUT}
-)
+add_custom_target(gobject-introspection ALL DEPENDS ${GIR_OUTPUT})
 
-add_custom_target(generate-introspection ALL DEPENDS ${TYPELIB_OUTPUT})
-
-install(TARGETS taco_gl_preview LIBRARY
-    DESTINATION .
-)
-
-install(FILES ${TYPELIB_OUTPUT}
-    DESTINATION girepository-1.0
-)
+install(TARGETS taco_gl_preview LIBRARY DESTINATION .)
