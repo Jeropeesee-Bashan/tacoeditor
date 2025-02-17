@@ -11,5 +11,18 @@ dependencies = [
     "PyGObject"
 ]
 
+[project.optional-dependencies]
+gl_preview = ["setuptools"]
+
 [project.gui-scripts]
-tacoeditor = "tacoeditor.main:main"
+tacoeditor = "tacoeditor:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tacoeditor"]
+artifacts = [
+    "tacoeditor/resources/*.so",
+    "tacoeditor/resources/girepository-1.0/"
+]
+
+[tool.hatch.build.hooks.custom]
+require-runtime-features = ["gl_preview"]

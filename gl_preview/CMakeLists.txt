@@ -43,12 +43,13 @@ list(TRANSFORM GIR_INCLUDE_DIRS PREPEND "-I")
 
 add_custom_command(
     OUTPUT ${GIR_OUTPUT}
-    COMMAND ${CMAKE_COMMAND} -E env LD_LIBRARY_PATH=${CMAKE_BINARY_DIR} g-ir-scanner
+    COMMAND g-ir-scanner
     ARGS --warn-all
     --warn-error
     --namespace Taco
     --nsversion 1.0
     --library=taco_gl_preview
+    --library-path=${CMAKE_BINARY_DIR}
     --include=Gtk-4.0
     --output ${GIR_OUTPUT}
     ${GIR_INCLUDE_DIRS}
@@ -64,16 +65,10 @@ add_custom_command(
 
 add_custom_target(generate-introspection ALL DEPENDS ${TYPELIB_OUTPUT})
 
-include(GNUInstallDirs)
-
-install(TARGETS taco_gl_preview
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-
-install(FILES ${GIR_OUTPUT}
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/gir-1.0
+install(TARGETS taco_gl_preview LIBRARY
+    DESTINATION .
 )
 
 install(FILES ${TYPELIB_OUTPUT}
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/girepository-1.0
+    DESTINATION girepository-1.0
 )

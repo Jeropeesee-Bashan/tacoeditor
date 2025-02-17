@@ -1,3 +1,6 @@
+# Taco Editor specific
+tacoeditor/resources/girepository-1.0/
+
 # Virtual Environment
 venv/
 env/
@@ -53,4 +56,4 @@ dmypy.json
 .env.*.local
 
 # Logs
-*.log 
+*.log
