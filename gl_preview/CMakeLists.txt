@@ -5,6 +5,10 @@ set(CMAKE_C_STANDARD 90)
 set(CMAKE_C_EXTENSIONS ON)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+    set(CMAKE_C_STANDARD 11)
+endif()
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK4 REQUIRED gtk4)
 pkg_check_modules(EPOXY REQUIRED epoxy)
