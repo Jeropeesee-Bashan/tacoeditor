@@ -44,12 +44,12 @@ class SpecialBuildHook(BuildHookInterface):
 
         subprocess.check_call([
             gircompiler,
-            f"--output={self.root}/tacoeditor/resources/Taco-1.0.typelib",
-            "--shared-library=./resources/libtaco_gl_preview.so",
-            f"{build_dir}/Taco-1.0.gir"
+            f"--output={self.root}/tacoeditor/resources/TacoEditor-1.0.typelib",
+            "--shared-library=./resources/libgl_preview.so",
+            f"{build_dir}/TacoEditor-1.0.gir"
         ])
 
     def clean(self, versions: list[str]):
         shutil.rmtree(f"{self.root}/gl_preview/build")
-        os.remove(f"{self.root}/tacoeditor/resources/Taco-1.0.typelib")
+        os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
         os.remove(f"{self.root}/tacoeditor/resources/libtaco_gl_preview.so")

@@ -13,17 +13,17 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/gl_preview.c
     ${CMAKE_SOURCE_DIR}/gl_preview.h
 )
-set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/Taco-1.0.gir)
-set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/Taco-1.0.typelib)
+set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.gir)
+set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.typelib)
 
-add_library(taco_gl_preview SHARED ${SOURCES})
+add_library(gl_preview SHARED ${SOURCES})
 
-target_include_directories(taco_gl_preview PRIVATE
+target_include_directories(gl_preview PRIVATE
     ${GTK4_INCLUDE_DIRS}
     ${EPOXY_INCLUDE_DIRS}
 )
 
-target_link_libraries(taco_gl_preview PRIVATE
+target_link_libraries(gl_preview PRIVATE
     ${GTK4_LIBRARIES}
     ${EPOXY_LIBRARIES}
 )
@@ -31,11 +31,11 @@ target_link_libraries(taco_gl_preview PRIVATE
 if(MSVC)
     check_c_compiler_flag("/Zc:gnu" HAS_GNU_EXTENSIONS)
     if(HAS_GNU_EXTENSIONS)
-        target_compile_options(taco_gl_preview PRIVATE /Zc:gnu)
+        target_compile_options(gl_preview PRIVATE /Zc:gnu)
     endif()
-    target_compile_options(taco_gl_preview PRIVATE /W4 /WX)
+    target_compile_options(gl_preview PRIVATE /W4 /WX)
 else()
-    target_compile_options(taco_gl_preview PRIVATE -Wall -Wextra -Werror)
+    target_compile_options(gl_preview PRIVATE -Wall -Wextra -Werror)
 endif()
 
 set(GIR_INCLUDE_DIRS ${GTK4_INCLUDE_DIRS})
@@ -46,17 +46,17 @@ add_custom_command(
     COMMAND g-ir-scanner
     ARGS --warn-all
     --warn-error
-    --namespace Taco
+    --namespace TacoEditor
     --nsversion 1.0
-    --library=taco_gl_preview
+    --library=gl_preview
     --library-path=${CMAKE_BINARY_DIR}
     --include=Gtk-4.0
     --output ${GIR_OUTPUT}
     ${GIR_INCLUDE_DIRS}
     ${SOURCES}
-    DEPENDS taco_gl_preview
+    DEPENDS gl_preview
 )
 
 add_custom_target(gobject-introspection ALL DEPENDS ${GIR_OUTPUT})
 
-install(TARGETS taco_gl_preview LIBRARY DESTINATION .)
+install(TARGETS gl_preview LIBRARY DESTINATION .)
