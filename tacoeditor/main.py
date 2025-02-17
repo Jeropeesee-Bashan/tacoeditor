@@ -2,6 +2,11 @@ import sys
 import gi
 import os
 
+from pathlib import Path
+
+resources_dir = Path(__file__).parent / "resources"
+os.environ["GI_TYPELIB_PATH"] = str(resources_dir / "girepository-1.0")
+
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Taco", "1.0")
@@ -12,9 +17,7 @@ from gi.repository import (
     Taco,
 )
 
-resource_path = os.path.join(os.path.dirname(__file__), "resources")
-
-@Gtk.Template(filename=os.path.join(resource_path, "window.xml"))
+@Gtk.Template(filename=str(resources_dir / "window.xml"))
 class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = "TacoEditorWindow"
 
@@ -25,7 +28,7 @@ class MainWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        picture_path = os.path.join(resource_path, "welcome.svg")
+        picture_path = str(resources_dir / "welcome.svg")
         self.welcome_picture.set_filename(picture_path)
 
         file_menu = Gio.Menu()
