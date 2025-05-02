@@ -4,7 +4,8 @@ import os
 
 from pathlib import Path
 
-resources_dir = Path(__file__).parent / "resources"
+base_dir = Path(__file__).parent
+resources_dir = base_dir / "resources"
 os.environ["GI_TYPELIB_PATH"] = str(resources_dir)
 
 gi.require_version("Gtk", "4.0")
@@ -87,6 +88,6 @@ class TacoEditorApp(Adw.Application):
 
 
 def main():
-    os.chdir(Path(__file__).parent)
+    os.chdir(base_dir)
     app = TacoEditorApp()
     return app.run(sys.argv)
