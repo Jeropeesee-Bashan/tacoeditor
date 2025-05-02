@@ -49,6 +49,9 @@ class SpecialBuildHook(BuildHookInterface):
         )
 
     def clean(self, versions: list[str]):
-        shutil.rmtree(f"{self.root}/gl_preview/build")
-        os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
-        os.remove(f"{self.root}/tacoeditor/resources/libgl_preview.{suffix}")
+        shutil.rmtree(f"{self.root}/gl_preview/build", ignore_errors=True)
+        try:
+            os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
+            os.remove(f"{self.root}/tacoeditor/resources/libgl_preview.{suffix}")
+        except FileNotFoundError:  # Ignore if files don't exist
+            pass
