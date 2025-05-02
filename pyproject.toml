@@ -21,6 +21,7 @@ tacoeditor = "tacoeditor:main"
 packages = ["tacoeditor"]
 artifacts = [
     "tacoeditor/resources/*.so",
+    "tacoeditor/resources/*.dll",
     "tacoeditor/resources/*.typelib"
 ]
 
