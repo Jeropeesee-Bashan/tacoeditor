@@ -51,4 +51,4 @@ class SpecialBuildHook(BuildHookInterface):
     def clean(self, versions: list[str]):
         shutil.rmtree(f"{self.root}/gl_preview/build")
         os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
-        os.remove(f"{self.root}/tacoeditor/resources/libtaco_gl_preview.{suffix}")
+        os.remove(f"{self.root}/tacoeditor/resources/libgl_preview.{suffix}")
