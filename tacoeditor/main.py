@@ -10,12 +10,14 @@ os.environ["GI_TYPELIB_PATH"] = str(resources_dir)
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("TacoEditor", "1.0")
+
 from gi.repository import (
     Gtk,
     Gio,
     Adw,
     TacoEditor,
 )
+
 
 @Gtk.Template(filename=str(resources_dir / "window.xml"))
 class MainWindow(Adw.ApplicationWindow):
@@ -25,6 +27,7 @@ class MainWindow(Adw.ApplicationWindow):
     theme_button = Gtk.Template.Child()
     welcome_picture = Gtk.Template.Child()
     main_box = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -73,6 +76,7 @@ class MainWindow(Adw.ApplicationWindow):
             "weather-clear-symbolic" if is_dark else "weather-clear-night-symbolic"
         )
 
+
 class TacoEditorApp(Adw.Application):
     def __init__(self):
         super().__init__(application_id="su.kulenko.tacoeditor")
@@ -80,6 +84,7 @@ class TacoEditorApp(Adw.Application):
     def do_activate(self):
         window = MainWindow(application=self)
         window.present()
+
 
 def main():
     os.chdir(Path(__file__).parent)
