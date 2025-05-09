@@ -61,4 +61,13 @@ add_custom_command(
     DEPENDS gl_preview
 )
 
-add_custom_target(gobject-introspection ALL DEPENDS ${GIR_OUTPUT})
+add_custom_command(
+    OUTPUT ${TYPELIB_OUTPUT}
+    COMMAND g-ir-compiler
+    ARGS --output=${TYPELIB_OUTPUT}
+    --shared-library=resources/$<TARGET_FILE_NAME>
+    ${GIR_OUTPUT}
+    DEPENDS ${GIR_OUTPUT}
+)
+
+add_custom_target(typelib ALL DEPENDS ${TYPELIB_OUTPUT})
