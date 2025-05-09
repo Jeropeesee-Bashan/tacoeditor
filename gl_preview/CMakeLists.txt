@@ -17,8 +17,6 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/gl_preview.c
     ${CMAKE_SOURCE_DIR}/gl_preview.h
 )
-set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.gir)
-set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.typelib)
 
 add_library(gl_preview SHARED ${SOURCES})
 
@@ -42,6 +40,8 @@ else()
     target_compile_options(gl_preview PRIVATE -Wall -Wextra -Werror)
 endif()
 
+set(GIR_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.gir)
+set(TYPELIB_OUTPUT ${CMAKE_BINARY_DIR}/TacoEditor-1.0.typelib)
 set(GIR_INCLUDE_DIRS ${GTK4_INCLUDE_DIRS})
 list(TRANSFORM GIR_INCLUDE_DIRS PREPEND "-I")
 
