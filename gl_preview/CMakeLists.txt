@@ -65,9 +65,12 @@ add_custom_command(
     OUTPUT ${TYPELIB_OUTPUT}
     COMMAND g-ir-compiler
     ARGS --output=${TYPELIB_OUTPUT}
-    --shared-library=resources/$<TARGET_FILE_NAME>
+    --shared-library=resources/$<TARGET_FILE_NAME:gl_preview>
     ${GIR_OUTPUT}
     DEPENDS ${GIR_OUTPUT}
 )
 
 add_custom_target(typelib ALL DEPENDS ${TYPELIB_OUTPUT})
+
+install(TARGETS gl_preview DESTINATION .)
+install(FILES ${TYPELIB_OUTPUT} DESTINATION .)

@@ -1,13 +1,9 @@
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
-import os
-import sys
-import shutil
-import subprocess
-
 from typing import Any
 
-suffix = "dll" if sys.platform == "win32" else "so"
+import subprocess
+import shutil
 
 
 class SpecialBuildHook(BuildHookInterface):
@@ -28,30 +24,13 @@ class SpecialBuildHook(BuildHookInterface):
                 build_dir,
             ]
         )
-
         subprocess.check_call([cmake, "--build", build_dir])
-
-        shutil.copy(
-            f"{build_dir}/libgl_preview.{suffix}", f"{self.root}/tacoeditor/resources"
-        )
-
-        gircompiler = shutil.which("g-ir-compiler")
-        if gircompiler is None:
-            raise RuntimeError("g-ir-compiler has not been found")
-
         subprocess.check_call(
             [
-                gircompiler,
-                f"--output={self.root}/tacoeditor/resources/TacoEditor-1.0.typelib",
-                f"--shared-library=./resources/libgl_preview.{suffix}",
-                f"{build_dir}/TacoEditor-1.0.gir",
+                cmake,
+                "--install",
+                build_dir,
+                "--prefix",
+                f"{self.root}/tacoeditor/resources",
             ]
         )
-
-    def clean(self, versions: list[str]):
-        shutil.rmtree(f"{self.root}/gl_preview/build", ignore_errors=True)
-        try:
-            os.remove(f"{self.root}/tacoeditor/resources/TacoEditor-1.0.typelib")
-            os.remove(f"{self.root}/tacoeditor/resources/libgl_preview.{suffix}")
-        except FileNotFoundError:  # Ignore if files don't exist
-            pass
