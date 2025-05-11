@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="TacoEditorWindow" parent="AdwApplicationWindow">
-    <property name="title">Taco Editor</property>
+    <property name="title">TacoEditor</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
     <child>
@@ -37,7 +37,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="label">Welcome to Taco Editor!
+                    <property name="label">Welcome to TacoEditor!
         You can open an existing project or create a new one...</property>
                     <property name="justify">center</property>
                     <property name="wrap">true</property>

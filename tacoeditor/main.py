@@ -4,24 +4,21 @@ import os
 
 from pathlib import Path
 
-base_dir = Path(__file__).parent
-resources_dir = base_dir / "resources"
-os.environ["GI_TYPELIB_PATH"] = str(resources_dir)
+
+BASE_DIR = Path(__file__).parent
+RESOURCES_DIR = BASE_DIR / "resources"
+os.environ["GI_TYPELIB_PATH"] = str(RESOURCES_DIR)
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("TacoEditor", "1.0")
 
-from gi.repository import (
-    Gtk,
-    Gio,
-    Adw,
-    TacoEditor,
-)
+
+from gi.repository import Gtk, Gio, Adw, TacoEditor as te
 
 
-@Gtk.Template(filename=str(resources_dir / "window.xml"))
-class MainWindow(Adw.ApplicationWindow):
+@Gtk.Template(filename=str(RESOURCES_DIR / "window.xml"))
+class TacoEditorWindow(Adw.ApplicationWindow):
     __gtype_name__ = "TacoEditorWindow"
 
     file_button = Gtk.Template.Child()
@@ -32,7 +29,7 @@ class MainWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        picture_path = str(resources_dir / "welcome.svg")
+        picture_path = str(RESOURCES_DIR / "welcome.svg")
         self.welcome_picture.set_filename(picture_path)
 
         file_menu = Gio.Menu()
@@ -54,7 +51,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.add_action(exit_action)
 
         self.theme_button.connect("clicked", self.on_theme_toggle)
-        gl_preview = TacoEditor.GLPreview()
+        gl_preview = te.GLPreview()
         gl_preview.set_size_request(-1, 150)
         self.main_box.append(gl_preview)
 
@@ -78,16 +75,16 @@ class MainWindow(Adw.ApplicationWindow):
         )
 
 
-class TacoEditorApp(Adw.Application):
+class TacoEditor(Adw.Application):
     def __init__(self):
-        super().__init__(application_id="su.kulenko.tacoeditor")
+        super().__init__(application_id="su.kulenko.TacoEditor")
 
     def do_activate(self):
-        window = MainWindow(application=self)
+        window = TacoEditorWindow(application=self)
         window.present()
 
 
 def main():
-    os.chdir(base_dir)
-    app = TacoEditorApp()
+    os.chdir(BASE_DIR)
+    app = TacoEditor()
     return app.run(sys.argv)
