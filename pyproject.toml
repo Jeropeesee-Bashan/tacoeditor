@@ -20,8 +20,7 @@ tacoeditor = "tacoeditor:main"
 [tool.hatch.build.targets.wheel]
 packages = ["tacoeditor"]
 artifacts = [
-    "tacoeditor/resources/*.so",
-    "tacoeditor/resources/*.dll",
+    "tacoeditor/resources/libgl_preview*",
     "tacoeditor/resources/*.typelib"
 ]
 
