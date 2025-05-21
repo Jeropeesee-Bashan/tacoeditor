@@ -12,14 +12,14 @@ class SpecialBuildHook(BuildHookInterface):
         if cmake is None:
             raise RuntimeError("CMake has not been found")
 
-        build_dir = f"{self.root}/gl_preview/build"
+        build_dir = f"{self.root}/native/build"
 
         subprocess.check_call(
             [
                 cmake,
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-S",
-                f"{self.root}/gl_preview",
+                f"{self.root}/native",
                 "-B",
                 build_dir,
             ]

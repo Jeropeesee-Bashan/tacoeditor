@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-gl_preview = ["setuptools"]
+native = ["setuptools"]
 
 [project.gui-scripts]
 tacoeditor = "tacoeditor:main"
@@ -20,9 +20,9 @@ tacoeditor = "tacoeditor:main"
 [tool.hatch.build.targets.wheel]
 packages = ["tacoeditor"]
 artifacts = [
-    "tacoeditor/resources/libgl_preview*",
+    "tacoeditor/resources/libtacoeditor*",
     "tacoeditor/resources/*.typelib"
 ]
 
 [tool.hatch.build.hooks.custom]
-require-runtime-features = ["gl_preview"]
+require-runtime-features = ["native"]
