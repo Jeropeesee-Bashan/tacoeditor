@@ -5,7 +5,7 @@
 
 G_BEGIN_DECLS
 
-#define TACO_EDITOR_GL_PREVIEW_TYPE taco_editor_gl_preview_get_type()
+#define TACO_EDITOR_TYPE_GL_PREVIEW taco_editor_gl_preview_get_type()
 G_DECLARE_FINAL_TYPE(TacoEditorGLPreview,
                      taco_editor_gl_preview,
                      TACO_EDITOR,
