@@ -50,12 +50,12 @@ add_custom_command(
     COMMAND g-ir-scanner
     ARGS --warn-all
     --warn-error
-    --namespace TacoEditor
-    --nsversion 1.0
+    --namespace=TacoEditor
+    --nsversion=1.0
     --library=tacoeditor
     --library-path=${CMAKE_BINARY_DIR}
     --include=Gtk-4.0
-    --output ${GIR_OUTPUT}
+    --output=${GIR_OUTPUT}
     ${GIR_INCLUDE_DIRS}
     ${SOURCES}
     DEPENDS tacoeditor
