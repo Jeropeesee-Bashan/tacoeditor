@@ -2,13 +2,15 @@
 
 #include <epoxy/gl.h>
 
-struct _TacoEditorGLPreviewPrivate {
+typedef struct {
     GLuint program;
     GLuint vao;
     GLuint vbo;
-};
+} TacoEditorGLPreviewPrivate;
 
-typedef struct _TacoEditorGLPreviewPrivate TacoEditorGLPreviewPrivate;
+struct _TacoEditorGLPreview {
+    GtkGLArea parent_instance;
+};
 
 G_DEFINE_FINAL_TYPE_WITH_PRIVATE(TacoEditorGLPreview,
                                  taco_editor_gl_preview,
@@ -42,7 +44,7 @@ taco_editor_gl_preview_init(TacoEditorGLPreview *self)
 
     gtk_gl_area_set_allowed_apis(gl_area, GDK_GL_API_GL);
     gtk_gl_area_set_required_version(gl_area, 3, 3);
-    /* gtk_gl_area_set_auto_render(GTK_GL_AREA(self), FALSE); */
+    gtk_gl_area_set_auto_render(GTK_GL_AREA(self), FALSE);
 
     priv->program = 0;
     priv->vao = 0;
@@ -52,8 +54,7 @@ taco_editor_gl_preview_init(TacoEditorGLPreview *self)
 GtkWidget*
 taco_editor_gl_preview_new(void)
 {
-
-    return g_object_new(TACO_EDITOR_GL_PREVIEW_TYPE, NULL);
+    return gtk_gl_area_new();
 }
 
 static gboolean
@@ -62,7 +63,7 @@ taco_editor_gl_preview_render(GtkGLArea *gl_area, GdkGLContext *context)
     (void)context;
     (void)gl_area;
 
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     return TRUE;
