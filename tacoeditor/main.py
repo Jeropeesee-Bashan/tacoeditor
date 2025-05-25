@@ -7,7 +7,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
 RESOURCES_DIR = BASE_DIR / "resources"
-os.environ["GI_TYPELIB_PATH"] = str(RESOURCES_DIR)
+
+repo = gi.Repository.get_default()
+repo.prepend_search_path(str(RESOURCES_DIR))
+repo.prepend_library_path(str(RESOURCES_DIR))
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -85,6 +88,5 @@ class TacoEditor(Adw.Application):
 
 
 def main():
-    os.chdir(BASE_DIR)
     app = TacoEditor()
     return app.run(sys.argv)

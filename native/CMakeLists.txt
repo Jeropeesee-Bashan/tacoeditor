@@ -65,7 +65,7 @@ add_custom_command(
     OUTPUT ${TYPELIB_OUTPUT}
     COMMAND g-ir-compiler
     ARGS --output=${TYPELIB_OUTPUT}
-    --shared-library=resources/$<TARGET_FILE_NAME:tacoeditor>
+    --shared-library=$<TARGET_FILE_NAME:tacoeditor>
     ${GIR_OUTPUT}
     DEPENDS ${GIR_OUTPUT}
 )
